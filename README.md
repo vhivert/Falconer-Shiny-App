@@ -1,11 +1,11 @@
 <h1>Welcome in the Falconer ShinyApp</h1><br><br>
-The aim of this App is to show how the combination of gene action and allele frequencies at causal loci translate to genetic variance and genetic variance components for a complex trait. Although the theory underlying the App is more than a century old, it is highly relevant in the current era of genome-wide association studies (GWAS). The App can be used to demonstrate the relationship between a SNP effect size estimated from GWAS and the variation the SNP generates in the population, <i>i.e.</i> how locus-specific effects lead to individual differences. In addition, it can also be used to demonstrate how within and between locus interactions (dominance and epistasis, respectively) usually do not lead to a large amount of non-additive variance relative to additive variance, and therefore that these interactions usually do not explain individual differences in a population.<br><br>
+The aim of this App is to show how the combination of gene action and allele frequencies at causal loci translate to genetic variance and genetic variance components for a complex trait. Although the theory underlying the App is more than a century old, it is highly relevant in the current era of genome-wide association studies (GWAS). The App can be used to demonstrate the relationship between a SNP effect size estimated from GWAS and the variation the SNP generates in the population, i.e., how locus-specific effects lead to individual differences. In addition, it can also be used to demonstrate how within and between locus interactions (dominance and epistasis, respectively) usually do not lead to a large amount of non-additive variance relative to additive variance, and therefore that these interactions usually do not explain individual differences in a population.<br><br>
 
 The three models described below mainly illustrate the Chapters 7 and 8 of Falconer and Mackay (1996) and the Chapter 5 of Lynch and Walsh (1998).<br><br>
 
 <h3><b>Single-locus Model with additive and dominance effect:</b></h3><br>
 
-In this single-locus model, we consider a biallelic locus with allele A<sub>1</sub> and A<sub>2</sub> in frequencies <i>p</i> and 1-<i>p</i>. Under panmixia (<i>i.e.</i> random mating) and Hardy-Weinberg equilibrium, the expected genotype frequencies are (1-<i>p</i>)<sup>2</sup>,2<i>p</i> (1-<i>p</i>) and <i>p</i><sup>2</sup>, for A<sub>2</sub>A<sub>2</sub>, A<sub>1</sub>A<sub>2</sub> and A<sub>1</sub>A<sub>1</sub> respectively. 
+In this single-locus model, we consider a biallelic locus with allele A<sub>1</sub> and A<sub>2</sub> in frequencies <i>p</i> and 1-<i>p</i>. Under panmixia (i.e., random mating) and Hardy-Weinberg equilibrium, the expected genotype frequencies are (1-<i>p</i>)<sup>2</sup>,2<i>p</i> (1-<i>p</i>) and <i>p</i><sup>2</sup>, for A<sub>2</sub>A<sub>2</sub>, A<sub>1</sub>A<sub>2</sub> and A<sub>1</sub>A<sub>1</sub> respectively. 
       We arbitrarily assign genotypic values (the mean trait values for the different genotype class) -<i>a</i>, <i>d</i> and <i>a</i> to the three genotypes, <i>d</i> representing the dominance effect (within locus interaction, no interaction when <i>d</i> = 0) and 2<i>a</i> the difference between the two homozygotes. Under this model, the population mean is:<br><br>
 
 M = (2<i>p</i>-1)<i>a</i> + 2<i>p</i>(1-<i>p</i>)<i>d</i><br><br>
@@ -18,7 +18,7 @@ The transmission of value from parents to offspring occurs through their genes (
 
 Importantly, &#120572; is also the slope of the linear regression of the genotype means, weighted by their frequency, on the A<sub>1</sub> allele dosage (0, 1 or 2). <br><br>
 
-When performing a standard GWAS, individual phenotypes <i>y</i> are regressed on the number <i>x</i> (<i>x</i> = 0, 1, 2) of reference alleles at a given locus, , <i>i.e.</i>, the allelic “dosage”, where the reference allele for this dosage count is arbitrarily the major or minor allele (but this arbitrary choice is reflected in the sign of the regression coefficient &beta;:<br><br>
+When performing a standard GWAS, individual phenotypes <i>y</i> are regressed on the number <i>x</i> (<i>x</i> = 0, 1, 2) of reference alleles at a given locus, , i.e., the allelic “dosage”, where the reference allele for this dosage count is arbitrarily the major or minor allele (but this arbitrary choice is reflected in the sign of the regression coefficient &beta;:<br><br>
 
 y = &mu; + &beta;x + e<br><br>
 
