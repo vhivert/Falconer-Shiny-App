@@ -251,7 +251,7 @@ ui <- fluidPage(
         column(8,
                conditionalPanel(
                  condition = "input.model == 'AA' || input.model == 'Perso'",
-                 HTML("Graphical representation of genotypic values (closed circles) at two biallelic loci A and B. The horizontal scale show  the number of A<sub>1</sub> alleles in the genotype. The different genotypes at locus B are depicted in different colors. For each of the locus B genotypes, the linear regression line betwen the number of A<sub>1</sub> allele and the genotypic value is drawn.")
+                 HTML("Graphical representation of genotypic values (closed circles) at two biallelic loci A and B. The horizontal scale show  the number of A<sub>1</sub> alleles in the genotype. The different genotypes at locus B are depicted in different colors. For each of the locus B genotypes, the linear regression line between the number of A<sub>1</sub> allele and the genotypic value is drawn.")
                ),
                conditionalPanel(
                  condition = "input.model == 'AD'",
@@ -387,7 +387,7 @@ The total genotypic variance (<i>V<sub>G</sub></i>) of the model is partitioned 
 
 The additive variance of the model is:<br><br>
 
-<i>V<sub>A</sub></i> = &sum;<sub>i</sub><i>H</i><sub>i</sub>&#120572;<sub>i</sub><sup>2</sup>, with <i>H</i><sub>i</sub> the heterozygosity at locus i and &#120572;<sub>i</sub> the average effect of locus i. Hence:<br><br>
+<i>V<sub>A</sub></i> = &sum;<sub><i>i</i></sub><i>H<sub>i</sub></i>&#120572;<sub><i>i</i></sub><sup>2</sup>, with <i>H<sub>i</sub></i> the heterozygosity at locus <i>i</i> (<i>i</i> = A, B) and &#120572;<sub><i>i</i></sub> the average effect of locus <i>i</i>. Hence:<br><br>
 
 <i>V<sub>A</sub></i> = 2<i>p</i>(1-<i>p</i>)[<i>a</i><sub>A</sub>+2<i>qa</i><sub>AB</sub>] + 2<i>q</i>(1-<i>q</i>)[<i>a</i><sub>B</sub>+2<i>pa</i><sub>AB</sub>] <br><br>
 
@@ -397,7 +397,7 @@ Note that <i>V<sub>A</sub></i> contains a term due pairwise additive-by-additive
 
 The additive-by-additive variance of the model is:<br><br>
 
-<i>V<sub>AA</sub></i> = &sum;<sub>i</sub>&sum;<sub>j>i</sub><i>H</i><sub>i</sub><i>H</i><sub>j</sub><i>a</i><sub>ij</sub><sup>2</sup>, with <i>H</i><sub>i</sub> the heterozygosity at locus i and <i>a</i><sub>ij</sub> the additive-by-additive interaction effect between locus i and j. Hence:<br><br>
+<i>V<sub>AA</sub></i> = &sum;<sub><i>i</i></sub>&sum;<sub><i>j>i</i></sub><i>H<sub>i</sub>H<sub>j</sub>a<sub>ij</sub></i><sup>2</sup>, with <i>H<sub>i</sub></i> the heterozygosity at locus <i>i</i> (<i>i</i> = A, B) and <i>a<sub>ij</sub></i> the additive-by-additive interaction effect between locus <i>i</i> and <i>j</i>. Hence:<br><br>
 
 <i>V<sub>AA</sub></i> = 4<i>p</i>(1-<i>p</i>)<i>q</i>(1-<i>q</i>)<i>a</i><sub>AB</sub><br><br>
 
