@@ -292,6 +292,7 @@ server <- function(input, output, session) {
   v <- reactiveValues(mu = 0, beta1 = 0, beta2 = 0, Va = 0, Va1 = 0, Va2 = 0, Vd = 0, Vd1 = 0, Vd2 = 0, Vaa = 0, Vad = 0, Vdd = 0, Vg = 0)#Pop mean, betas and Variance components.They are updated in the main plot output
   values <- reactiveValues()#Reactive values for the user defined genotypic values matrix
   init <- reactiveValues(idx=0)
+  
   ### Helper dialogue #############
   observeEvent(input$preview, {
     showModal(modalDialog(
@@ -420,27 +421,7 @@ Where <i>V<sub>AD</sub></i> is the additive-by-dominance variance and <i>V<sub>D
   },ignoreNULL = FALSE)
   ###################################################
   
-  ######################################################################################################
-  #
-  # Synchronized updates of sliders
-  #
-  
-  output$SliderA1<- renderUI({
-    if(isolate(init$idx)==0){
-      init$idx=1
-      a=4
-    }else{a=input$sliderA1}
-    label=ifelse(input$model=="AD","Genotypic value <i>a</i> ","Locus A genotypic value <i>a</i><sub>A</sub>")
-    sliderInput("sliderA1",label =  HTML(label), min = -10, max = 10, step = 1,value=a)
-  })
-  
-  ### Synchronize  Additive value's name to the model display ############# DEPRECATED
-   # observeEvent(input$model, {
-   #   label=ifelse(input$model=="AD","Genotypic value &alpha;","Locus A genotypic value &alpha;<sub>A</sub>")
-   #   updateSliderInput(session, "sliderA1", label=HTML(label))
-   # })
-  
-  ## Handsontable ####
+  ## Handsontable for generalized 2-locus model ####
   observe({
     if (!is.null(input$hot)) {
       values[["previous"]] <- isolate(values[["GV"]])
@@ -461,7 +442,15 @@ Where <i>V<sub>AD</sub></i> is the additive-by-dominance variance and <i>V<sub>D
       rhandsontable(GV) #rowHeaders =  c("B2B2","B1B1","B1B1"), colHeaders = c("A2A2","A1A1","A1A1")
   })
   
-  
+  ### Slider A1 widget, have to be in render ui to update label with html
+  output$SliderA1<- renderUI({
+    if(isolate(init$idx)==0){
+      init$idx=1
+      a=4
+    }else{a=input$sliderA1}
+    label=ifelse(input$model=="AD","Genotypic value <i>a</i> ","Locus A genotypic value <i>a</i><sub>A</sub>")
+    sliderInput("sliderA1",label =  HTML(label), min = -10, max = 10, step = 1,value=a)
+  })
   ### Output Var A  #############
   output$varianceA <- renderUI({
     if(input$model=="AD"){
@@ -649,29 +638,6 @@ Where <i>V<sub>AD</sub></i> is the additive-by-dominance variance and <i>V<sub>D
     
   })
   
-  ### Output Plot Dominance  #############
-  # output$plotDom <- renderPlot({ #Plot for dominance model
-  #   req(input$sliderA1)
-  #   p  <- seq(0,1,0.01)
-  #   a1  <- input$sliderA1
-  #   d  <- input$sliderD
-  #   beta1 <- a1 + d*(1-2*p)
-  #   Va <- 2*p*(1-p)*beta1^2
-  #   Vd <- (2*p*(1-p)*d)^2
-  #   # For plotting
-  #   par(mar=c(5.1, 5.1, 1, 2.1))
-  #   par(mfrow=c(1,3))
-  #   plot(x = p,y = Va,type="l",col="black",lwd=2,xlab=bquote("Frequency of "~A[1]~(italic(p))),ylab=bquote(italic(V[A])),cex.lab=1.8,cex.axis=1.8)
-  #   points(x=input$sliderP,y=v$Va,pch=3,col="red",cex=4,lwd=4)
-  #   
-  #   plot(x = p,y = Vd,type="l",col="black",lwd=2,xlab=bquote("Frequency of "~A[1]~(italic(p))),ylab=bquote(italic(V[D])),cex.lab=1.8,cex.axis=1.8)
-  #   points(x=input$sliderP,y=v$Vd,pch=3,col="red",cex=4,lwd=4)
-  #   
-  #   plot(x = p,y = Va/(Va+Vd),type="l",col="black",lwd=2,xlab=bquote("Frequency of "~A[1]~(italic(p))),ylab=bquote(italic(V[A]/V[G])),cex.lab=1.8,cex.axis=1.8)
-  #   points(x=input$sliderP,y=v$Va/(v$Va+v$Vd),pch=3,col="red",cex=4,lwd=4)
-  #   
-  # })
-  
   output$plotDom <- renderPlot({ #Plot for dominance model
     req(input$sliderA1)
     p  <- seq(0,1,0.01)
@@ -688,11 +654,10 @@ Where <i>V<sub>AD</sub></i> is the additive-by-dominance variance and <i>V<sub>D
     points(x=p,y=Vd,type="l",col="black",lwd=2, lty=3)
     abline(v = input$sliderP,col="red",lwd=2)
     legend(x="topright",legend = c(expression(V[A]),expression(V[D]),expression(V[G])),lty = c(1,3,4),lwd = 2, bty = "n",cex=1.5)
-    #title(main = "A.", font=3, adj = 0,mgp = c(2.25,1,0),cex.main = 2.5)
     
     plot(x = p,y = Va/(Va+Vd),type="l",col="black",lwd=2,xlab=bquote("Frequency of "~A[1]~(italic(p))),ylab=bquote(italic(V[A]/V[G])),cex.lab=1.8,cex.axis=1.8)
     points(x=input$sliderP,y=v$Va/(v$Va+v$Vd),pch=3,col="red",cex=4,lwd=4)
-    #title(main = "B.", font=3, adj = 0,mgp = c(2.25,1,0),cex.main = 2.5)
+   
   })
   
   ### Output ContourPlot AA  #############
