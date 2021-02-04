@@ -20,9 +20,9 @@ Importantly, &#120572; is also the slope of the linear regression of the genotyp
 
 When performing a standard GWAS, individual phenotypes <i>y</i> are regressed on the number <i>x</i> (<i>x</i> = 0, 1, 2) of reference alleles at a given locus, , i.e., the allelic “dosage”, where the reference allele for this dosage count is arbitrarily the major or minor allele (but this arbitrary choice is reflected in the sign of the regression coefficient &beta;:<br><br>
 
-y = &mu; + &beta;x + e<br><br>
+<i>y</i> = &mu; + &beta;<i>x</i> + <i>e</i><br><br>
 
-Where the residuals e include both the non-additive genetic effects at the locus, the genetic effects (additive and non-additive) at other loci and an environmental and/or chance effect (non-genetic). The quantity of interest is the slope &beta; of the model (the effect size of the locus), which is the average effect of allele substitution, hence &beta; = &#120572;.<br><br>
+Where the residuals <i>e</i> include both the non-additive genetic effects at the locus, the genetic effects (additive and non-additive) at other loci and an environmental and/or chance effect (non-genetic). The quantity of interest is the slope &beta; of the model (the effect size of the locus), which is the average effect of allele substitution, hence &beta; = &#120572;.<br><br>
 
 <b>Additive (breeding) values and dominance deviations</b><br>
 
