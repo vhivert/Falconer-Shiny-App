@@ -22,18 +22,22 @@
 # 
 # Authors: Valentin Hivert, Naomi Wray and Peter Visscher
 # Date: 03 Feb 2021
-
+#
 # Version 1.0
+#
+# Citation:  
+# Hivert V, Wray NR, Visscher PM (2021) Gene action, genetic variation, and GWAS: A user-friendly web tool. PLOS Genetics 17(5): e1009548. https://doi.org/10.1371/journal.pgen.1009548 
 ###################################################################################
 
 ##Libraries
 require(shiny)
 require(plot3D)
 require(htmlTable)
+require(htmltools)
 require(pBrackets)
 require(shinyalert)
 require(rhandsontable)
-require(htmltools)
+
 
 ### Function to derive components of genetic variance #############
 Compute_GeneticVariances <- function(GV, p, q){
@@ -697,7 +701,7 @@ Where <i>V<sub>AD</sub></i> is the additive-by-dominance variance and <i>V<sub>D
   
   ############################################################################################
   #
-  # TABLES
+  # TABLE
   # 
   ### Output Main Table  #############
   output$table <- renderUI({
