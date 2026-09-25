@@ -40,8 +40,8 @@ library(pBrackets)
 library(rhandsontable)
 
 ## Model computations and README content
-source(file.path("./genetics.R"), local = TRUE)
-source(file.path("./readme.R"),   local = TRUE)
+source(file.path("R", "genetics.R"), local = TRUE)
+source(file.path("R", "readme.R"),   local = TRUE)
 
 
 ### Display helpers ###############################################################

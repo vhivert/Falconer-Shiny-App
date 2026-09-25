@@ -2,22 +2,6 @@
 
 This release is a code revision of v1.0 (Feb 2021). The user interface, the three models and what they are meant to show are unchanged. It fixes one display bug, one performance bug and several errors in the README text, and restructures the code so it is easier to maintain.
 
-## Suggested commit message
-
-```
-v1.1: fix two-locus frequency table, refactor reactivity, split code into R/
-
-- Fix transposed genotype frequencies in the two-locus table (visible when p != q)
-- Stop re-rendering the a/aA slider on every move
-- Compute all model results in one reactive() instead of writing to reactiveValues from renderPlot
-- Move model computations to R/genetics.R and README content to R/readme.R
-- Validate the user-editable genotypic value table; handle V_G = 0
-- Remove unused shinyalert/htmltools dependencies and dead code
-- Fix formulas and typos in the README (alpha_A, alpha_B, V_A, V_AA, genotype frequency)
-- Add tests/test_genetics.R
-- Update README.md to match the corrected in-app README
-- Rename App.R to app.R; use Font Awesome 6 icon name "circle-question"
-```
 
 ## New file layout
 
@@ -27,7 +11,6 @@ v1.1: fix two-locus frequency table, refactor reactivity, split code into R/
 | `R/genetics.R` | *new*: model functions `model_AD()`, `model_AA()`, `model_general()`, `Compute_GeneticVariances()`, frequency helpers, default genotypic values |
 | `README.md` | updated: same text as the in-app README dialog, with the corrections in section 4 |
 | `R/readme.R` | *new*: `readme_content()`, the HTML of the README dialog (moved out of the server) |
-| `tests/test_genetics.R` | *new*: numerical checks of the model functions (`Rscript tests/test_genetics.R`) |
 | `www/` | unchanged (`AD_model.png`, `AAA_model.png`) |
 
 `app.R` loads the two new files with `source()`. Recent Shiny versions also load `R/` automatically; loading them twice does no harm.
@@ -131,18 +114,3 @@ The new α and V_A expressions were checked numerically against the least-square
   - small punctuation fixes in the Figure 7.2 caption
 - **Code comments:** "Conditionnal" → "Conditional"
 - "Mäki" is written as `M&auml;ki` so it displays correctly whatever the file encoding.
-
-## 5. Tests
-
-`tests/test_genetics.R` (base R only) checks that:
-
-1. in the general model, V_A + V_D + V_AA + V_AD + V_DD = V_G and M equals the frequency-weighted mean, for 200 random genotypic-value matrices and frequencies;
-2. the closed-form two-locus AA model matches the general least-squares model (μ, α_A, α_B, per-locus V_A, V_AA, V_G, and V_D = V_AD = V_DD = 0);
-3. the closed-form single-locus AD model matches the general model when locus B has no effect;
-4. the two-locus frequency matrix has the right orientation (the bug in 1.1).
-
-These checks were run on a direct port of the functions. Please also run `Rscript tests/test_genetics.R` and launch the app once locally before committing.
-
-## Not changed (possible follow-ups)
-
-- **Slider values:** the p and q sliders use `min = 0.001, step = 0.01`, so they only land on values like 0.291 or 0.301. `min = 0.01, max = 0.99` would give round values. Left as is because it slightly changes behavior.
